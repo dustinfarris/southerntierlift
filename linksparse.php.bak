@@ -1,0 +1,69 @@
+<?php 
+
+include ('./db_connect.php');
+
+$sql = "SELECT * FROM client_trucks WHERE current = 0";
+
+
+echo time();
+
+/*$sql2 = mysql_query($sql);
+
+while($row = mysql_fetch_assoc($sql2) {
+
+    $today = time();
+    $last_service = $row["last_service"];
+    
+    $date1=mktime(0, 0, 0, date("m", $date1), date("d", $date1)-14, date("Y", $date1));*/
+    
+
+
+/*while($result = mysql_fetch_assoc($sql2)) {
+    
+    $truckArray = explode("\n",$result["description"]);
+    $truck = array("make" => trim($truckArray[0]),"model" => trim($truckArray[1]),"serial" => trim($truckArray[2]));
+
+    $sql = "INSERT IGNORE INTO client_trucks (company_id,make,model,serial) VALUES ('".$result["venue_id"]."','".$truck["make"]."','".$truck["model"]."','".$truck["serial"]."');";
+    echo $sql."\n";
+}*/
+
+/*while($result = mysql_fetch_assoc($sql)) {
+
+    //print_r($result);
+    $jsonDecode = json_decode($result["trucks"],true);
+    
+    foreach($jsonDecode as $truck) {
+    
+        $sql2 = "INSERT INTO client_trucks (company_id,make,model,serial) VALUES ('".$result["link_id"]."','".$truck["make"]."','".$truck["model"]."','".$truck["serial"]."');";
+        echo $sql2."\n";
+        $sql2 = mysql_query($sql2);
+    }
+
+}*/
+
+// CSV parse
+/*
+function parse($file) {
+    if (($handle = fopen($file, "r")) === FALSE) return;
+    while (($cols = fgetcsv($handle, 1000, "\n")) !== FALSE) {
+       
+        
+        foreach( $cols as $key => $val) {
+        $colsArray = explode(',',$cols[$key]);    
+            //$cols[$key] = preg_replace("/^\"(.*)\"$/sim", "$1", $cols[$key]);
+            //$cols[$key] = trim( $cols[$key] );
+            //$cols[$key] = iconv('UCS-2', 'UTF-8', $cols[$key]."\0") ;
+            //$cols[$key] = str_replace('""', '"', $cols[$key]);
+        $colsArray[3] = explode(' ',$colsArray[3]);
+        }
+        //print_r($colsArray);
+        $sql = "Update client_trucks SET int_interval = '".trim($colsArray[2],"\"")."', last_service = '".trim($colsArray[1],"\"")."' WHERE truck_id = '".$colsArray[0]."';";
+        echo $sql."\n";
+        mysql_query($sql);
+    }
+}
+
+parse("dump.csv");
+
+*/
+?>

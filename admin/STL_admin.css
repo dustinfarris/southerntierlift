@@ -1,0 +1,3 @@
+#equipinfo span p {font-weight: bold;}
+#content #company_info,#truck_info {width: 300px;float: left;}
+#content #company_info,#truck_info fieldset {padding: 5px;}

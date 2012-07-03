@@ -1,0 +1,116 @@
+<?php
+/* There is an intention of making this run on a cron job php-cli app but for the time being
+the site changes so much on a daily basis that googlebot needs to crawl everyday */
+
+
+$isoLastModifiedSite = "";
+if (!$isoLastModifiedSite) { // last modification of web site
+    $isoLastModifiedSite = makeIso8601TimeStamp(date('Y-m-d H:i:s'));
+} 
+$newLine = "\n";
+$indent = " ";
+if (!$rootUrl) $rootUrl = "http://www.southerntierlift.com";
+
+$xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>".$newLine;
+
+
+$urlsetOpen = "<urlset xmlns=\"http://www.google.com/schemas/sitemap/0.84\" 
+					   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" 
+					   xmlns:image=\"http://www.google.com/schemas/sitemap-image/1.1\"
+					   xsi:schemaLocation=\"http://www.google.com/schemas/sitemap/0.84 
+					   http://www.google.com/schemas/sitemap/0.84/sitemap.xsd\">".$newLine;
+$urlsetValue = "";
+$urlsetClose = "</urlset>".$newLine;
+
+function makeUrlString ($urlString) {
+    return htmlentities($urlString, ENT_QUOTES, 'UTF-8');
+}
+
+function makeIso8601TimeStamp ($dateTime) {
+    if (!$dateTime) {
+        $dateTime = date('Y-m-d H:i:s');
+    }
+    if (is_numeric(substr($dateTime, 11, 1))) {
+        $isoTS = substr($dateTime, 0, 10) ."T"
+                 .substr($dateTime, 11, 8) ."+00:00";
+    }
+    else {
+        $isoTS = substr($dateTime, 0, 10);
+    }
+    return $isoTS;
+}
+
+function makeUrlTag ($url, $picture = null, $modifiedDateTime, $changeFrequency, $priority) {
+    GLOBAL $newLine;
+    GLOBAL $indent;
+    GLOBAL $isoLastModifiedSite;
+    $urlOpen = $indent."<url>".$newLine;
+    $urlValue = "";
+    $urlClose = $indent."</url>".$newLine;
+    $locOpen = $indent.$indent."<loc>";
+    $locValue = "";
+    $locClose = "</loc>".$newLine;
+	$imgOpen = $indent.$indent."<image:image>".$newLine;
+	$imgValue = "";
+	$imgClose = $indent.$indent."</image:image>".$newLine;
+	$imgLoc = $indent.$indent.$indent."";
+    $lastmodOpen = $indent.$indent."<lastmod>";
+    $lastmodValue = "";
+    $lastmodClose = "</lastmod>".$newLine;
+    $changefreqOpen = $indent.$indent."<changefreq>";
+    $changefreqValue = "";
+    $changefreqClose = "</changefreq>".$newLine;
+    $priorityOpen = $indent.$indent."<priority>";
+    $priorityValue = "";
+    $priorityClose = "</priority>".$newLine;
+
+    $urlTag = $urlOpen;
+    $urlValue     = $locOpen .makeUrlString($url) .$locClose;
+	if ($picture) {
+		$imgValue = $imgLoc."<image:loc>".makeUrlString($picture)."</image:loc>".$newLine;
+		$urlValue .= $imgOpen.$imgValue.$imgClose;
+	}
+	
+    if ($modifiedDateTime) {
+     $urlValue .= $lastmodOpen .makeIso8601TimeStamp($modifiedDateTime) .$lastmodClose;
+		if (!$isoLastModifiedSite) { // last modification of web site
+         $isoLastModifiedSite = makeIso8601TimeStamp($modifiedDateTime);
+		}
+    }
+    if ($changeFrequency) {
+     $urlValue .= $changefreqOpen .$changeFrequency .$changefreqClose;
+    }
+	
+    if ($priority) {
+     $urlValue .= $priorityOpen .$priority .$priorityClose;
+    }
+	
+    $urlTag .= $urlValue;
+    $urlTag .= $urlClose;
+    return $urlTag;
+}
+
+
+$urlsetValue .= makeUrlTag ($rootUrl."/index.php", $picture = "", $isoLastModifiedSite, "weekly", "1.0");
+
+include('./db_connect.php');
+
+$sql = "SELECT sku,picture	 FROM `inventory` where 1=1;";
+$result = mysql_query($sql);
+
+while($row = mysql_fetch_row($result)) {
+	if($row[1]) {
+		$urlsetValue .= makeUrlTag ($rootUrl."/parts.php?sku=".$row[0], $picture = $rootUrl.$row[1], $isoLastModifiedSite, "weekly", "1.0");
+	} else {
+		$urlsetValue .= makeUrlTag ($rootUrl."/parts.php?sku=".$row[0], $picture = "", $isoLastModifiedSite, "weekly", "1.0");
+	}
+}
+
+header('Content-type: application/xml; charset="utf-8"',true);
+
+print $xmlHeader;
+print $urlsetOpen;
+print $urlsetValue;
+print $urlsetClose;
+	
+	

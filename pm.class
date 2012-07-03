@@ -1,0 +1,41 @@
+<?php
+
+class preventative_maintenance {
+
+    private $date_today = array("day" => date("j"),"month" => date("n"),"year" => date("Y"),"time" => time());
+    
+    //return $last_service + $interval as time()
+    private function calculate_next($interval,$last_service) {
+        
+        $next_service = $last_service;
+        
+        if(!is_int($interval)) {
+            return ("Incorrect Interval Time. Interval is required to be in integer format greater than zero.");
+        }
+        
+        $next_service = strtotime("+ ".$interval." days",$next_service);
+        
+        return $next_service;
+    }
+    
+    // return bool
+    private function isDue() {
+     
+        $next_service = calculate_next($interval,$last_service);
+        
+        $dateDelta = $next_service - $date_today["time"];
+        
+        if($dateDelta > 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    
+        
+}
+
+}
+
+?>

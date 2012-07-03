@@ -1,0 +1,57 @@
+<?php
+
+
+/***********************************
+This is a database abstraction layer
+to handle recieving, connecting and
+inserting database information.
+
+
+Author: Derek Wurtenberg
+
+
+***********************************/
+
+class Database() {
+    
+    private $db_lang = "mysql";
+
+    protected function connect($database,$host,$user,$pass) {
+        private $link = mysqli_connect($host,$user,$pass);
+            
+        try {
+            if(!$link)) {
+                throw new Error("Database Authoization Failed");
+            }
+     
+            if(!mysqli_select_db($database,$link)) {
+                throw new Error("Invalid Database Name");
+            }
+                
+                        
+       } catch (Error $e) {}
+    }
+    
+
+    protected function insert($data_array,$tbl_name,$override = null) {
+    /*
+    key1 => "Value1",
+    key2 => "test"
+    
+    
+    
+    */
+        try {
+            if(is_array($data_array)) {
+                foreach($data_array as $brick => $value) {
+                
+                       if($brick === 0 || $value === 0) {
+                            throw new Error("Insert Request Failed on Table: ".$tbl_name."; Query: ".$data_array);
+                       } else {
+                            $query = "INSERT INTO ".$tbl_name." VALUES ('".implode("','",$brick)."');";
+                       }
+                 }    
+            }
+        }
+
+}

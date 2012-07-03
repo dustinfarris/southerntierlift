@@ -1,0 +1,26 @@
+* {margin: 0;padding: 0;}
+body {margin: 0;padding: 0;color: #121042;font-family: Helvetica,Arial,sans-serif;font-size: 11px;}
+#container {width: 860px;margin: 0 auto;border: 1px solid #121042;background: white;margin-top: 10px;}
+
+#menu {background: #ccc}
+#menu ul{list-style: none}
+#menu a{display: block;width: 127px;text-decoration: none;color: #121042;text-align: center;font-weight: bold;}
+#menu li{float: left;width: 127px;border-top: 1px solid #121042;border-bottom: 1px solid #121042;background: #ccc}
+
+#content {clear: left;padding: 20px;}
+#content h2 {text-align: center;}
+#content table.parts {border: 1px solid #121042;width: 75%;margin: 0 auto;}
+#content table.parts tr td{padding: 0 5px}
+#content table.parts tr.header {background: #121042;color: white;font-weight: bold;text-align: center;font-size: 13px;}
+#content table.parts tr.even {background: #b7b7b7;color: white;}
+#content table.parts tr.even a{color: white;font-weight: bold;}
+#content ul {list-style-position: inside;padding-left: 20px;}
+#content #equip {float: left;width: 50%;}
+#content #equip #title {color: #121042;text-align: center;font-weight: bold;background: #CCC;font-size: 15px}
+#content #equip img{float: left;}
+#content #equipinfo {float: left;margin-left: 15px;}
+#content #searchAgain {float: right;width: 50%;}
+
+
+#footer {background: #ccc;border: 1px solid #121042;font-weight: bold;text-align: center;clear: both}
+#footer span {color: red;font-weight: bold;font-size: 15px;}

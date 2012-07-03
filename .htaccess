@@ -1,0 +1,7 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} !^www\.southerntierlift\.com$ [NC]
+RewriteRule ^(.*)$ http://www.southerntierlift.com/$1 [R=301,L]
+
+addHandler application/x-httpd-php .xml

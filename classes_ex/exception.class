@@ -1,0 +1,56 @@
+<?php
+
+
+/***********************************
+Error Handling and Reporting Class
+
+Author: Derek Wurtenberg
+
+
+***********************************/
+
+class Error extends Exception() {
+
+//$this->getFile()
+//$this->getLine()
+//$this->getTrace()
+//$this->getMessage()
+//$this->getCode()
+
+    public function __construct($message, $code=0) {
+            parent::__construct($message, $code);
+            log_error();
+        }
+        
+    public function __toString() {
+            return "<b style='color:red'>".$this->Message()."</b>";
+        }
+    
+    public function log_error(){
+        $date = date("m-d-Y ErrorLog");
+        $header = "date,code,message,file,line,trace\n"
+        $line = "~".date("Y-m-d H:i:s")."~,~".$this->getCode()."~,~".$this->getMessage()."~,~".$this->getFile()."~,~".$this->getLine()."~,~".$this->getTrace()."~\n"
+
+
+        if(file_exists($date.".log")) {
+            $handle = fopen($date.".log","a");
+            
+            fwrite($handle,$line);
+        }
+    }
+}
+
+class TestClass() {
+
+    function __construct() {
+        $a = "b";
+        
+        try {
+            if($a="b") {
+                throw new Error();
+            }
+        }
+        catch(Error $e) {}
+        
+    }
+}
