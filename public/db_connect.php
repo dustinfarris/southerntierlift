@@ -16,7 +16,7 @@
 
 $host = 'localhost';
 $user = 'stl_frontend';
-$pass = '87!9.)62_,U}f>';
+$pass = 'xvztktg';
 
 $link = mysql_connect($host, $user, $pass);
 
