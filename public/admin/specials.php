@@ -5,7 +5,7 @@ include('./header.php');
 
 ?>
 <div id="content">
-<form action="<?$PHP_SELF?>" method="post">
+<form action="<?php $PHP_SELF?>" method="post">
    <span>Day:
         <select name="day" id="day" size="1">
             <option value="1">01</option>

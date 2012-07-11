@@ -118,15 +118,15 @@ function editLink($id) {
 				</tr>
 				<tr>
 					<td>Truck Make: </td>
-					<td><input type="text" name="make[]" value="<? echo $truck->make?>" /></td>
+					<td><input type="text" name="make[]" value="<?php  echo $truck->make?>" /></td>
 				</tr>
 				<tr>
 					<td>Truck Model: </td>
-					<td><input type="text" name="model[]" value="<? echo $truck->model?>" /></td>
+					<td><input type="text" name="model[]" value="<?php  echo $truck->model?>" /></td>
 				</tr>
 				<tr>
 					<td>Truck Serial: </td>
-					<td><input type="text" name="serial[]" value="<? echo $truck->serial?>" /></td>
+					<td><input type="text" name="serial[]" value="<?php  echo $truck->serial?>" /></td>
 				</tr>
 			</table>
 	<?php

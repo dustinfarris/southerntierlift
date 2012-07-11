@@ -388,8 +388,8 @@ if (!$superview) {
 		<td>
 			<select name="group" id="group">
 				<?php group_tree(0); ?>
-			</select> <select name="propose" id="propose"><option value="post"<? if ($_POST["propose"] == "post") echo " selected"; ?>><?php echo $lang["post"];?></option><option value="propose"<? if ($_POST["propose"] == "propose") echo " selected"; ?>><?php echo $lang["propose"];?></option></select>
-			<input type="checkbox" name="notify" value="1"<? if ($_POST["notify"]) echo " checked"; ?>> <?php echo $lang["notify subscribers"];?>
+			</select> <select name="propose" id="propose"><option value="post"<?php  if ($_POST["propose"] == "post") echo " selected"; ?>><?php echo $lang["post"];?></option><option value="propose"<?php  if ($_POST["propose"] == "propose") echo " selected"; ?>><?php echo $lang["propose"];?></option></select>
+			<input type="checkbox" name="notify" value="1"<?php  if ($_POST["notify"]) echo " checked"; ?>> <?php echo $lang["notify subscribers"];?>
 		</td>
 	</tr>
 	<tr>

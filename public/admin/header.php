@@ -66,7 +66,7 @@ print ("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
 				<div id="menu">
 					<ul id="nav">
 						<li><a href="./portal.php" alt="Home">Portal</a></li>
-						<li><a href="./calendar/index.php?<?echo "o=1&c=".$c."&m=".date(m)."&a=".date(d)."&y=".date(Y)."&w=".$w;?>" alt="Service">Calendar</a></li>
+						<li><a href="./calendar/index.php?<?php echo "o=1&c=".$c."&m=".date(m)."&a=".date(d)."&y=".date(Y)."&w=".$w;?>" alt="Service">Calendar</a></li>
 						<li ><a href="./trucks.php" alt="Equipment">Used Trucks</a></li>
 						<li><a href="./inventory.php" alt="Parts">Inventory</a></li>
 						<li><a href="./workorder.php" alt="Mobile Tire Pressing">Work Orders</a></li>

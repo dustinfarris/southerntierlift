@@ -1,4 +1,4 @@
-<?/*login file for STL Administration portal */
+<?php /*login file for STL Administration portal */
 include("./header.php");
 ?>
 <div id="content">
@@ -21,4 +21,4 @@ include("./header.php");
 	</form>
 </div>
 
-<? include("../footer.php"); ?>
+<?php  include("../footer.php"); ?>

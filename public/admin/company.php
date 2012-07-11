@@ -122,7 +122,7 @@ if($_GET["c"]) {
 ?>
 <div id="content">
     <div id="contentBannerLink"><h4><a href="./company.php">Return to Company List</a></h4></div>
-        <form id="company_info_form" name="company_info_form" action="<? echo $_SERVER['PHP_SELF']."?c=".$_GET["c"];?>" method="post">
+        <form id="company_info_form" name="company_info_form" action="<?php  echo $_SERVER['PHP_SELF']."?c=".$_GET["c"];?>" method="post">
             <div id="company_info">
                  <fieldset>
                     <legend>Company Information</legend>
