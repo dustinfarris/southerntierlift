@@ -1,15 +1,15 @@
-<?php 
+<?php
 
 
 	include('../db_connect.php');
 
-	
+
 	$sql = "";
 	$result = "";
 	$row = "";
-	
-	
-/*	
+
+
+/*
 	if($_POST) {
 		$pFName = mysql_real_escape_string($_POST["pFName"]);
 		$pLName = mysql_real_escape_string($_POST["pLName"]);
@@ -45,7 +45,7 @@
 		$sql = "SELECT user_id, view, post, add_categories, add_groups, add_users, email, password FROM `users` WHERE `email`='".$user."' AND `password`='".$pass."' limit 1;";
 		if($result = mysql_query($sql)) {
 			if($result = mysql_num_rows($result) < 1) {
-				return header( 'Location: http://www.southerntierlift.com/admin/index.php' );}
+				return header( 'Location: /admin/index.php' );}
 			$row = mysql_fetch_object(mysql_query($sql));
 			if($user === $row->email && $pass === $row->password) {
 				session_start();
@@ -66,11 +66,11 @@
 				if ($row->post) $superpost = true;
 				if ($row->view) $superview = true;
 				if ($row->view) $superview = true;
-				return header('Location: http://www.southerntierlift.com/admin/portal.php');
+				return header('Location: /admin/portal.php');
 			}
 		}
 	}
-	
+
 function passSalter($string) {
 	$string = $string . "b102974";
 	return $string;

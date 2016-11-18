@@ -6,18 +6,18 @@ the site changes so much on a daily basis that googlebot needs to crawl everyday
 $isoLastModifiedSite = "";
 if (!$isoLastModifiedSite) { // last modification of web site
     $isoLastModifiedSite = makeIso8601TimeStamp(date('Y-m-d H:i:s'));
-} 
+}
 $newLine = "\n";
 $indent = " ";
-if (!$rootUrl) $rootUrl = "http://www.southerntierlift.com";
+if (!$rootUrl) $rootUrl = "http://admin.southerntierlift.com";
 
 $xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>".$newLine;
 
 
-$urlsetOpen = "<urlset xmlns=\"http://www.google.com/schemas/sitemap/0.84\" 
-					   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" 
+$urlsetOpen = "<urlset xmlns=\"http://www.google.com/schemas/sitemap/0.84\"
+					   xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
 					   xmlns:image=\"http://www.google.com/schemas/sitemap-image/1.1\"
-					   xsi:schemaLocation=\"http://www.google.com/schemas/sitemap/0.84 
+					   xsi:schemaLocation=\"http://www.google.com/schemas/sitemap/0.84
 					   http://www.google.com/schemas/sitemap/0.84/sitemap.xsd\">".$newLine;
 $urlsetValue = "";
 $urlsetClose = "</urlset>".$newLine;
@@ -70,7 +70,7 @@ function makeUrlTag ($url, $picture = null, $modifiedDateTime, $changeFrequency,
 		$imgValue = $imgLoc."<image:loc>".makeUrlString($picture)."</image:loc>".$newLine;
 		$urlValue .= $imgOpen.$imgValue.$imgClose;
 	}
-	
+
     if ($modifiedDateTime) {
      $urlValue .= $lastmodOpen .makeIso8601TimeStamp($modifiedDateTime) .$lastmodClose;
 		if (!$isoLastModifiedSite) { // last modification of web site
@@ -80,11 +80,11 @@ function makeUrlTag ($url, $picture = null, $modifiedDateTime, $changeFrequency,
     if ($changeFrequency) {
      $urlValue .= $changefreqOpen .$changeFrequency .$changefreqClose;
     }
-	
+
     if ($priority) {
      $urlValue .= $priorityOpen .$priority .$priorityClose;
     }
-	
+
     $urlTag .= $urlValue;
     $urlTag .= $urlClose;
     return $urlTag;
@@ -112,5 +112,5 @@ print $xmlHeader;
 print $urlsetOpen;
 print $urlsetValue;
 print $urlsetClose;
-	
-	
+
+

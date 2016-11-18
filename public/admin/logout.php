@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -18,5 +18,5 @@ if (ini_get("session.use_cookies")) {
 // Finally, destroy the session.
 session_destroy();
 
-header("Location: http://www.southerntierlift.com/");
+header("Location: /");
 ?>

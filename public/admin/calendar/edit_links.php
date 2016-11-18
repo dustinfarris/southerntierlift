@@ -40,12 +40,12 @@ function showLinks() {
 			if ($row[1]) echo $row[1]." : ";
 			if ($row[2]) echo $row[2]." : ";
 			echo $row[3]."&nbsp;&nbsp;[<a href=\"".$PHP_SELF."?mode=edit_link&id=".$row[0]."&".$common_get."\">".$lang["edit"]."</a>]&nbsp;&nbsp;[<a href=\"".$PHP_SELF."?mode=delete_link&id=".$row[0]."&".$common_get."\">".$lang["delete"]."</a>]</li>\n";
-			
-			
+
+
 		}
 		echo "</ul>\n";
 	}
-	
+
 }
 
 
@@ -54,11 +54,11 @@ function deleteLink($id) {
 	$q = "SELECT * from ".$table_prefix."links where link_id = ".$id." limit 1";
 	$query = mysql_query($q);
 	if (!$query) {
-		echo "Database Error : ".$q; 
+		echo "Database Error : ".$q;
 	} else {
 		$cat = mysql_fetch_array($query);
-	
-		
+
+
 ?>
 <h3><?php echo $lang["delete"]; ?>: <?php echo $cat["company"]; ?>?</h3>
 <p class="warning"><?php echo $lang["sure_delete_link"]; ?></p>
@@ -83,7 +83,7 @@ function editLink($id) {
 		echo "<h3>".$lang["add_new_link"]."</h3>\n";
 	}
 ?>
-<script type="text/javascript" src="http://www.southerntierlift.com/jquery.js"></script>
+<script type="text/javascript" src="/jquery.js"></script>
 <form action="admin_actions.php" method="post">
 <input type="hidden" name="id" id="id" value="<?php echo $cat["link_id"]; ?>">
 <table>
@@ -106,9 +106,9 @@ function editLink($id) {
 	</tr>
 
 	<?php if($cat['trucks']) {
-		
+
 		$trucks = json_decode($cat['trucks']);
-		$c = 0;		
+		$c = 0;
 		foreach ($trucks as $key => $truck) {
 			?>
 			<table class="trucks">
@@ -182,8 +182,8 @@ if (!$_SESSION["user_id"]) {
 		$edit = true;
 	} else {
 		echo "<p class=\"warning\">".$lang["not_authorzied_edit_links"]."</p>\n";
-	} 
-	
+	}
+
 }
 if ($edit) {
 
@@ -191,12 +191,12 @@ if ($edit) {
 	case "edit_link";
 		editLink($id);
 		break;
-	
+
 	case "delete_link";
 		deleteLink($id);
 		break;
-	
-	default; 
+
+	default;
 		showLinks();
 		break;
 	}

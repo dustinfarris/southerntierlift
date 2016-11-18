@@ -2,9 +2,9 @@
 session_start();
 // echo $_SESSION['djf'];
 // if (!isset($_SESSION['djf']))  {
-	// $_SESSION['djf'] = "asdofuhasodifhu"; 
+	// $_SESSION['djf'] = "asdofuhasodifhu";
 	// if ($_SESSION['verified'] == FALSE)  {
-		// header("Location: http://www.southerntierlift.com/admin/index.php");
+		// header("Location: /admin/index.php");
 	// }
 // }
 // unset($_SESSION['djf']);
@@ -12,7 +12,7 @@ include('./db_connect.php');
 
 if(!$_SESSION['verified']) {
 	if($_SERVER['SCRIPT_NAME'] != "/admin/index.php") {
-		header("Location: http://www.southerntierlift.com/admin/index.php");
+		header("Location: /admin/index.php");
 	}
 }
 
@@ -75,4 +75,4 @@ print ("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
 					<img src="../images/header_menu_right.jpg" alt="Menu Slice" width="97" height="16" style="float: left;" />
 				</div>
 			</div>
-			
+
